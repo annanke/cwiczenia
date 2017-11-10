@@ -12,8 +12,8 @@ public class LoginGenerator3 {
 		int indexSpacji;
 
 		for (int i=0; i<studentNames.length; i++){
-			indexSpacji=studentsNames[i].indexOf(" ")
-			mailAddressses[i]=studentsNames[i].substring(indexSpacji+1,indexSpacji+3).toLowerCase()+studentNames[i].substring(0,2).toLowerCase()+domain;
+			indexSpacji=studentNames[i].indexOf(" ");
+			mailAddressses[i]=studentNames[i].substring(indexSpacji+1,indexSpacji+3).toLowerCase()+studentNames[i].substring(0,2).toLowerCase()+domain;
 		}
 		
 		for (int i=0; i<mailAddressses.length; i++){
