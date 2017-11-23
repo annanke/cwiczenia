@@ -19,7 +19,7 @@ public class kalendarz{
 		
 		System.out.println("Hi! thank you for using our calendar!");
 		do{
-			menu=readNumber(3, "Please choose the option\n1 - add new event; 2 - list events; 3 - end calendar : ");
+			menu=readNumber(4, "Please choose the option\n1 - add new event; 2 - find events of month; 3 - list all events; 4 - close calendar : ");
 			switch(menu){
 				case 1: //add an event
 					GregorianCalendar chosenData=whichData();
@@ -35,7 +35,7 @@ public class kalendarz{
 					years[indexOfYear][chosenDayIndex]=scanner.nextLine();
 					break;
 					
-				case 2: //listing events of specified month
+				case 2: //filter events of specified month
 					do{
 						yearForListing=readNumber(actualYear+10, "For listing please provide a year in range of 10 years starting form "+actualYear+": ");
 					}while(actualYear>yearForListing);					
@@ -47,8 +47,12 @@ public class kalendarz{
 						System.out.println("You don't have any events for this year yet");
 					}
 					break;
-					
+				
 				case 3:
+					listAllEvents();
+					break;
+									
+				case 4:
 					System.out.println("Bye!");
 					isContinue=false;
 					break;
@@ -132,5 +136,9 @@ public class kalendarz{
 		if (isAnythingAdded==false){
 			System.out.println("There is no events in this month");
 		}	
+	}
+	
+	public static void listAllEvents(){
+		System.out.println("list all");
 	}
 }
