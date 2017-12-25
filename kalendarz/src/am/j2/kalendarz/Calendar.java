@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.time.LocalDate;
 
 public class Calendar {
-	private Scanner scanner;
+	private Scanner scanner=new Scanner(System.in);
 	private int chosenDayIndex=0; 
 	private int monthForListing=0;
 	private int yearForListing=0;
@@ -16,9 +16,9 @@ public class Calendar {
 	private LocalDate actualYearJan= LocalDate.of(actualYear, 1, 1);
 	
 	//konstruktor zbuduj
-	public Calendar(Scanner scanner) {
+/*	public Calendar(Scanner scanner) {
 		this.scanner = scanner;
-	}
+	}*/
 	
 	public void addEvent() {
 		LocalDate chosenData=whichData(actualYearJan);
@@ -31,7 +31,7 @@ public class Calendar {
 		}
 		chosenDayIndex = searchForDayOfYear(chosenYear, chosenData);
 		System.out.println("Please provide an event: ");
-		years[indexOfYear][chosenDayIndex]=scanner.next(); // Dlaczego nie dziala z nextline?
+		years[indexOfYear][chosenDayIndex]=scanner.nextLine();
 	}
 	
 	public void filterEventOfMonth() {
@@ -48,7 +48,7 @@ public class Calendar {
 	}
 	
 	private int readNumber(int rangeTop, String toPrint){
-		//Scanner scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		boolean ifNotCorrect =true;
 		int readNr=0; 
 		while(ifNotCorrect==true){
