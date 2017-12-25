@@ -31,7 +31,7 @@ public class Calendar {
 		}
 		chosenDayIndex = searchForDayOfYear(chosenYear, chosenData);
 		System.out.println("Please provide an event: ");
-		years[indexOfYear][chosenDayIndex]=scanner.next(); // Dlaczego nie dziala z nextline?
+		years[indexOfYear][chosenDayIndex]=readEvent(); // Dlaczego nie dziala z nextline?
 	}
 	
 	public void filterEventOfMonth() {
@@ -70,6 +70,22 @@ public class Calendar {
 		}return readNr;
 	}
 	
+	private String readEvent(){
+		//Scanner scanner = new Scanner(System.in);
+		boolean ifNotCorrect =true;
+		String readTxt=""; 
+		while(ifNotCorrect==true){
+			System.out.print("Provide a text of event: ");
+			
+			if(scanner.hasNext()==true){
+				readTxt=scanner.nextLine();
+				ifNotCorrect=false;
+			}
+		}
+		return readTxt;
+		//scanner.close();
+	}
+		
 	private LocalDate whichData(LocalDate actualYearJan){
 		LocalDate inTenYears = LocalDate.of(LocalDate.now().getYear()+10, 12, 31);
 		LocalDate chosenData = null;
