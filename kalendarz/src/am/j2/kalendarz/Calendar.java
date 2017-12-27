@@ -1,7 +1,6 @@
 package am.j2.kalendarz;
 
 import java.util.Scanner;
-//import java.util.concurrent.TimeUnit;
 import java.time.LocalDate;
 
 public class Calendar {
@@ -15,11 +14,7 @@ public class Calendar {
 	private int actualYear=LocalDate.now().getYear();
 	private LocalDate actualYearJan= LocalDate.of(actualYear, 1, 1);
 	
-	//konstruktor zbuduj
-/*	public Calendar(Scanner scanner) {
-		this.scanner = scanner;
-	}*/
-	
+
 	public void addEvent() {
 		LocalDate chosenData=whichData(actualYearJan);
 		chosenYear=chosenData.getYear();
@@ -66,7 +61,6 @@ public class Calendar {
 				ifNotCorrect=true;
 				scanner.next();
 			}
-		//scanner.close();
 		}return readNr;
 	}
 	

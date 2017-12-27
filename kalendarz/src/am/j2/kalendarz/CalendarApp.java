@@ -1,11 +1,9 @@
 package am.j2.kalendarz;
 
-//import java.time.LocalDate;
 import java.util.Scanner;
 
 public class CalendarApp {
-	//public static Scanner scanner = new Scanner(System.in);
-
+	
 	public static void main(String[] args){
 		int menu;
 		boolean isContinue=true;
@@ -36,8 +34,8 @@ public class CalendarApp {
 					System.out.println("wrong value");
 			}
 		}while(isContinue);
-		//scanner.close();
 	}
+	
 	public static int readNumber(int rangeTop, String toPrint){
 		Scanner scanner = new Scanner(System.in);
 		boolean ifNotCorrect =true;
@@ -57,7 +55,6 @@ public class CalendarApp {
 				ifNotCorrect=true;
 				scanner.next();
 			}
-		//scanner.close();
 		}return readNr;
 	}
 }
