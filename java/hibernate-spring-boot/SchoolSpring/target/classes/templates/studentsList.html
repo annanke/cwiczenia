@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<body>
+
+
+
+    <span layout:fragment="pageTitle"> - Uczniowie </span>
+
+    <div layout:fragment="content">
+    	<div th:include="menuFragment" ></div>
+		<br/><Br/>
+		<table border="1" cellpadding="5">
+			<tr><th>Id</th><th>Imie</th><th>Nazwisko</th><th>Akcje</th></tr>
+			<tr th:each="student: ${students}">
+				<td><span th:text="${student.id}" /></td>
+				<td><span th:text="${student.name}" /></td>
+				<td><span th:text="${student.surname}" /></td>
+
+			</tr>
+		</table>
+    </div>
+
+</body>
+</html>
