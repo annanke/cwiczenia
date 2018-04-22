@@ -54,15 +54,7 @@ public class Main {
       	Query query4 = session.createQuery(countStudents);
       	System.out.println("Number of students: "+ ( (Integer) query4.iterate().next() ).intValue());  
       	
-/*      String schoolsWith2Calsses = "select sc from SchoolClass as sc"; 
-      	Query query5 = session.createQuery(schoolsWith2Calsses);
-      	List<SchoolClass> results5 = query5.list();
-      	for (SchoolClass sc : results5){
-      		System.out.println( sc.getProfile());
-      	}
-      	 results5.forEach(sc -> System.out.println(sc.getProfile()));
-
-      	String schoolsWith2Calsses = "from (select sc.school, count(sc.profile) as profileAmount from SchoolClass as sc group by sc.school) where profileAmount >=2"; 
+/*     "from (select sc.school, count(sc.profile) as profileAmount from SchoolClass as sc group by sc.school) where profileAmount >=2"; 
      */
 		String schoolsWith2Calsses = "SELECT COUNT(S) FROM School S WHERE size(S.classes)>=2";
 		Query query5 = session.createQuery(schoolsWith2Calsses);
