@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import pl.edu.agh.ki.mwo.model.School;
+import pl.edu.agh.ki.mwo.model.Student;
 import pl.edu.agh.ki.mwo.persistence.DatabaseConnector;
 
 @Controller //konieczna adnotacja oznaczjaca obiekt kontrolera od strony widoku
@@ -24,44 +24,70 @@ public class StudentController {
         return "studentsList";    
     }
     
-/*    @RequestMapping(value="/AddSchool")
+    @RequestMapping(value="/AddStudent")
     public String displayAddSchoolForm(Model model, HttpSession session) {    	
     	if (session.getAttribute("userLogin") == null)
     		return "redirect:/Login";
     	
-        return "schoolForm";    
+        return "studentForm";    
     }
 
-    @RequestMapping(value="/CreateSchool", method=RequestMethod.POST)
-    public String createSchool(@RequestParam(value="schoolName", required=false) String name,
-    		@RequestParam(value="schoolAddress", required=false) String address,
+    @RequestMapping(value="/CreateStudent", method=RequestMethod.POST)
+    public String createStudent(@RequestParam(value="studentName", required=false) String name,
+    		@RequestParam(value="studentSurname", required=false) String surname,
+    		@RequestParam(value="studentPesel", required=false) String pesel,
     		Model model, HttpSession session) {    	
     	if (session.getAttribute("userLogin") == null)
     		return "redirect:/Login";
     	
-    	School school = new School();
-    	school.setName(name);
-    	school.setAddress(address);
+    	Student student = new Student();
+    	student.setName(name);
+    	student.setSurname(surname);
+    	student.setPesel(pesel);
     	
-    	DatabaseConnector.getInstance().addSchool(school);    	
-       	model.addAttribute("schools", DatabaseConnector.getInstance().getSchools());
-    	model.addAttribute("message", "Nowa szkoła została dodana");
+    	DatabaseConnector.getInstance().addStudent(student);    	
+    	model.addAttribute("students", DatabaseConnector.getInstance().getStudents());
+    	model.addAttribute("message", "Dodano nowego studenta");
          	
-    	return "schoolsList";
+    	return "studentsList";
+    }
+      
+    @RequestMapping(value="/DeleteStudent", method=RequestMethod.POST)
+    public String deleteSchool(@RequestParam(value="studentId", required=false) String studentId,
+    		Model model, HttpSession session) {    	
+    	if (session.getAttribute("userLogin") == null)
+    		return "redirect:/Login";
+    	
+    	DatabaseConnector.getInstance().deleteStudent(studentId);    	
+    	model.addAttribute("students", DatabaseConnector.getInstance().getStudents());
+    	model.addAttribute("message", "Student został usunięty");
+         	
+    	return "studentsList";
+    }
+    @RequestMapping(value="/EditStudent", method=RequestMethod.POST)
+    public String edittudent(@RequestParam(value="studentId", required=false) String studentId,
+    	   Model model, HttpSession session) {    	
+    	if (session.getAttribute("userLogin") == null)
+    		return "redirect:/Login";
+ 
+    	model.addAttribute("studentId", studentId);
+    	return "editStudentDataForm";
     }
     
-    @RequestMapping(value="/DeleteSchool", method=RequestMethod.POST)
-    public String deleteSchool(@RequestParam(value="schoolId", required=false) String schoolId,
+    @RequestMapping(value="/CorrectStudentData", method=RequestMethod.POST)
+    public String correctSchoolData(@RequestParam(value="studentId", required=true) String studentId,
+    		@RequestParam(value="studentName", required=false) String name,
+    		@RequestParam(value="studentSurname", required=false) String surname,
+    		@RequestParam(value="studentPesel", required=false) String pesel,
     		Model model, HttpSession session) {    	
     	if (session.getAttribute("userLogin") == null)
     		return "redirect:/Login";
-    	
-    	DatabaseConnector.getInstance().deleteSchool(schoolId);    	
-       	model.addAttribute("schools", DatabaseConnector.getInstance().getSchools());
-    	model.addAttribute("message", "Szkoła została usunięta");
+          	
+    	DatabaseConnector.getInstance().editStudent(studentId, name, surname, pesel);
+    	model.addAttribute("students", DatabaseConnector.getInstance().getStudents());
+    	model.addAttribute("message", "Dane sstudenta zostały zmienione");
          	
-    	return "schoolsList";
+    	return "studentsList";
     }
-*/
 
 }

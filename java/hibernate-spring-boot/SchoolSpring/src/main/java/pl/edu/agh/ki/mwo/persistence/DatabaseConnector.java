@@ -90,10 +90,6 @@ public class DatabaseConnector {
 	}
 
 	public void addSchoolClass(SchoolClass schoolClass, String schoolId) {
-		/*
-		 * Transaction transaction = session.beginTransaction();
-		 * session.save(schoolClass);
-		 */
 		String hql = "FROM School S WHERE S.id=" + schoolId;
 		Query query = session.createQuery(hql);
 		List<School> results = query.list();
@@ -120,19 +116,19 @@ public class DatabaseConnector {
 	}
 	
 	public void editSchoolClass(String schoolClassId, String schoolClassProfile, String schoolClassStartYear,
-			String schoolClassCurrentYear) {
+			String schoolClassCurrentYear, String schoolID) {
 		String hql = "FROM SchoolClass S WHERE S.id=" + schoolClassId;
 		Query query = session.createQuery(hql);
 		List<SchoolClass> results = query.list();
-		//String hqlSchool = "FROM School S WHERE S.id=" + schoolId;
-		//Query querySchool = session.createQuery(hqlSchool);
-		//List<School> schoolResults = querySchool.list();
+		String hqlSchool = "FROM School S WHERE S.id=" + schoolID;
+		Query querySchool = session.createQuery(hqlSchool);
+		List<School> schoolResults = querySchool.list();
 		Transaction transaction = session.beginTransaction();
 		for (SchoolClass s : results) {
 			s.setProfile(schoolClassProfile);
 			s.setStartYear(Integer.valueOf(schoolClassStartYear));
 			s.setCurrentYear(Integer.valueOf(schoolClassCurrentYear));
-			//s.setSchool(schoolResults.get(0));
+			s.setSchool(schoolResults.get(0));
 			session.update(s);
 		}
 		transaction.commit();
@@ -145,6 +141,38 @@ public class DatabaseConnector {
 		List students = query.list();
 
 		return students;
+	}
+
+	public void addStudent(Student student) {
+		Transaction transaction = session.beginTransaction();
+		session.save(student);
+		transaction.commit();		
+	}
+
+	public void deleteStudent(String studentId) {
+		String hql = "From Student S where S.id="+studentId;
+		Query query = session.createQuery(hql);
+		List<Student> results = query.list();
+		Transaction transaction= session.beginTransaction();
+		for (Student s:results) {
+			session.delete(s);
+		}
+		transaction.commit();
+		
+	}
+
+	public void editStudent(String studentId, String name, String surname, String pesel) {
+		String hql ="From Student S where S.id="+studentId;
+		Query query = session.createQuery(hql);
+		List<Student> results = query.list();
+		Transaction transaction = session.beginTransaction();
+		Student s =results.get(0);
+		s.setName(name);
+		s.setSurname(surname);
+		s.setPesel(pesel);
+		session.update(s);
+		transaction.commit();
+			
 	}
 
 

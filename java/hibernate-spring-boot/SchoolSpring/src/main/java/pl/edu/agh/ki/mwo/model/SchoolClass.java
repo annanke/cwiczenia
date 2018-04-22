@@ -21,7 +21,7 @@ public class SchoolClass implements java.io.Serializable {
 	@Column
 	private String profile;
 	
-	@ManyToOne
+	@ManyToOne //(cascade = {CascadeType.ALL})
 	@JoinColumn(name="school_id")
 	private School school;
 	

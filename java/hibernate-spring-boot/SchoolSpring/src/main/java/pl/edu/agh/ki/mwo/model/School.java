@@ -21,7 +21,7 @@ public class School implements java.io.Serializable {
 
 	
 	// @OneToMany(cascade=CascadeType.ALL)
-	// @JoinColumn(name="school_id")
+	@JoinColumn(name="school_id")
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "school")
 	private Set<SchoolClass> classes;
 
@@ -31,6 +31,7 @@ public class School implements java.io.Serializable {
 
 	public void addClass(SchoolClass newClass) {
 		classes.add(newClass);
+		newClass.setSchool(this);
 	}
 
 	public long getId() {
