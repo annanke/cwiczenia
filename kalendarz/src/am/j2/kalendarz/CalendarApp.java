@@ -1,17 +1,15 @@
 package am.j2.kalendarz;
 
-//import java.time.LocalDate;
 import java.util.Scanner;
 
 public class CalendarApp {
-	public static Scanner scanner = new Scanner(System.in);
-
+	
 	public static void main(String[] args){
 		int menu;
 		boolean isContinue=true;
 		
 		System.out.println("Hi! thank you for using our calendar!");
-		Calendar calendar = new Calendar(scanner);
+		Calendar calendar = new Calendar();
 		do{
 			menu=readNumber(4, "Please choose the option\n1 - add new event; 2 - find events of month; 3 - list all events; 4 - close calendar : ");
 			switch(menu){
@@ -36,10 +34,10 @@ public class CalendarApp {
 					System.out.println("wrong value");
 			}
 		}while(isContinue);
-		//scanner.close();
 	}
+	
 	public static int readNumber(int rangeTop, String toPrint){
-		//Scanner scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		boolean ifNotCorrect =true;
 		int readNr=0; 
 		while(ifNotCorrect==true){
@@ -57,7 +55,6 @@ public class CalendarApp {
 				ifNotCorrect=true;
 				scanner.next();
 			}
-		//scanner.close();
 		}return readNr;
 	}
 }
